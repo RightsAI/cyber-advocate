@@ -418,3 +418,29 @@ button.ghost {
     grid-template-columns: 1fr;
   }
 }
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.actions .btn {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  padding: 10px 16px;
+  background: rgba(0, 255, 204, 0.1);
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.actions .btn:hover {
+  background: #00ffcc;
+  color: #000;
+}
