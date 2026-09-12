@@ -1,0 +1,12 @@
+{
+  "name": "cyber-advocate-agent",
+  "version": "1.0.0",
+  "description": "Autonomous background logic for Cyber-Advocate",
+  "main": "agent.js",
+  "scripts": {
+    "start": "node agent.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
