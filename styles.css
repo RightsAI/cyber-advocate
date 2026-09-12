@@ -219,7 +219,11 @@ h2 {
   align-items: center;
 }
 
-button {
+button,
+.btn {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   border: 1px solid var(--cyan);
   background: rgba(92, 225, 255, 0.08);
   color: var(--text);
@@ -227,12 +231,31 @@ button {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font: inherit;
+  font-size: 0.85rem;
   cursor: pointer;
   box-shadow: var(--glow);
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-button:hover {
-  background: rgba(92, 225, 255, 0.18);
+button:hover,
+.btn:hover {
+  background: rgba(92, 225, 255, 0.25);
+  color: #ffffff;
+}
+
+button.primary,
+.btn.primary {
+  background: rgba(92, 225, 255, 0.2);
+  border-color: var(--cyan);
+  font-weight: 600;
+}
+
+button.ghost,
+.btn.ghost {
+  background: transparent;
+  box-shadow: none;
+  color: var(--dim);
+  border-color: var(--line);
 }
 
 #status-line {
@@ -386,13 +409,6 @@ code {
   padding: 0.7rem 0.85rem;
 }
 
-button.ghost {
-  background: transparent;
-  box-shadow: none;
-  color: var(--dim);
-  border-color: var(--line);
-}
-
 @media (max-width: 900px) {
   .channels fieldset {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -417,30 +433,4 @@ button.ghost {
   .channels fieldset {
     grid-template-columns: 1fr;
   }
-}
-.actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.actions .btn {
-  display: inline-block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  padding: 10px 16px;
-  background: rgba(0, 255, 204, 0.1);
-  border: 1px solid #00ffcc;
-  color: #00ffcc;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-}
-
-.actions .btn:hover {
-  background: #00ffcc;
-  color: #000;
 }
