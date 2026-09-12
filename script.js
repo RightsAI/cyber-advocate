@@ -347,18 +347,14 @@ function boot() {
     persistSession({ intake: { ...readIntakeFields(), file: readSession().intake?.file || null }, estimate: result });
   });
 
-  intakeForm?.addEventListener("submit", (event) => {
-    event.preventDefault();
+  document.getElementById("lock-estimate")?.addEventListener("click", () => {
     const result = renderEstimate();
     persistSession({
       intake: { ...readIntakeFields(), file: readSession().intake?.file || null },
       estimate: result,
       estimateLockedAt: new Date().toISOString(),
     });
-    const line = document.getElementById("intake-status");
-    if (line) {
-      line.textContent = `Locked ${money(result.total)}/wk extra help into session ${readSession().id}.`;
-    }
+    alert(`Locked ${money(result.total)}/wk extra help into session ${readSession().id}.`);
   });
 
   document.getElementById("field-file")?.addEventListener("change", async (event) => {
@@ -381,6 +377,23 @@ function boot() {
     }
   });
 
+  document.getElementById("generate-pdf-btn")?.addEventListener("click", () => {
+    const element = document.querySelector("main");
+    const opt = {
+      margin: 10,
+      filename: "MSD_Review_Draft.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    };
+    
+    if (typeof html2pdf !== "undefined") {
+      html2pdf().set(opt).from(element).save();
+    } else {
+      alert("PDF library loading... Please try again.");
+    }
+  });
+
   document.getElementById("back-m1")?.addEventListener("click", () => {
     persistSession({ module: 1 });
     showModule1(true);
@@ -391,21 +404,4 @@ function boot() {
 }
 
 window.addEventListener("pagehide", wipeSessionStore);
-
-boot();
-document.getElementById('generate-pdf-btn')?.addEventListener('click', () => {
-  const element = document.querySelector('main');
-  const opt = {
-    margin:       10,
-    filename:     'MSD_Review_Draft.pdf',
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2 },
-    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
-  
-  if (typeof html2pdf !== 'undefined') {
-    html2pdf().set(opt).from(element).save();
-  } else {
-    alert('PDF library loading... Please try again.');
-  }
-});
+document.addEventListener("DOMContentLoaded", boot);
