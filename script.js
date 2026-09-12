@@ -393,3 +393,19 @@ function boot() {
 window.addEventListener("pagehide", wipeSessionStore);
 
 boot();
+document.getElementById('generate-pdf-btn')?.addEventListener('click', () => {
+  const element = document.querySelector('main');
+  const opt = {
+    margin:       10,
+    filename:     'MSD_Review_Draft.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+  
+  if (typeof html2pdf !== 'undefined') {
+    html2pdf().set(opt).from(element).save();
+  } else {
+    alert('PDF library loading... Please try again.');
+  }
+});

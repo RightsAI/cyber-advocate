@@ -203,7 +203,8 @@
 
         <div class="actions">
           <button type="button" class="ghost" id="back-m1">Return to channels</button>
-          <button type="submit">Lock estimate into session</button>
+          <button type="submit">Lock estimate into session</button><button type="button" id="generate-pdf-btn">Generate Official Review PDF</button>
+  <button type="button" id="lock-estimate">LOCK ESTIMATE INTO SESSION</button>
           <p id="intake-status" role="status">Live calc · session still ephemeral.</p>
         </div>
       </form>
@@ -215,7 +216,7 @@
     <p>Not a substitute for a lawyer. Information is general and New Zealand–focused.</p>
     <p>Session store: <code>sessionStorage</code> · purge on <code>pagehide</code></p>
   </footer>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
