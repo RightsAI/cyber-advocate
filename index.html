@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rights.org.nz — Legal Diagnostic</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="hud-scanlines" aria-hidden="true"></div>
+  <div class="hud-grid" aria-hidden="true"></div>
+
+  <header class="hud-top">
+    <div class="mark">
+      <span class="mark-glyph" aria-hidden="true"></span>
+      <div>
+        <p class="eyebrow">Aotearoa · Autonomous Legal Aid</p>
+        <h1>rights.org.nz</h1>
+      </div>
+    </div>
+    <dl class="telemetry">
+      <div>
+        <dt>Uplink</dt>
+        <dd id="link-status">SECURE</dd>
+      </div>
+      <div>
+        <dt>Session</dt>
+        <dd id="session-id">—</dd>
+      </div>
+      <div>
+        <dt>Clock</dt>
+        <dd id="hud-clock">00:00:00</dd>
+      </div>
+    </dl>
+  </header>
+
+  <main>
+    <div id="flow" class="flow">
+    <section id="module-01" class="stage">
+    <section class="brief">
+      <p class="kicker">Module 01 · Intake</p>
+      <h2>Select a diagnostic channel</h2>
+      <p class="lede">
+        Choose the area that matches your situation. This session is ephemeral:
+        closing the tab wipes local session data immediately.
+      </p>
+    </section>
+
+    <form id="diagnostic-form" class="channels">
+      <fieldset>
+        <legend class="sr-only">Legal diagnostic options</legend>
+
+        <label class="channel">
+          <input type="radio" name="channel" value="employment" required>
+          <span class="channel-id">CH-01</span>
+          <span class="channel-title">Employment</span>
+          <span class="channel-copy">Dismissal, wages, bullying, contracts, Holidays Act.</span>
+        </label>
+
+        <label class="channel">
+          <input type="radio" name="channel" value="tenancy">
+          <span class="channel-id">CH-02</span>
+          <span class="channel-title">Tenancy &amp; housing</span>
+          <span class="channel-copy">Bonds, notices, repairs, Healthy Homes, eviction.</span>
+        </label>
+
+        <label class="channel">
+          <input type="radio" name="channel" value="family">
+          <span class="channel-id">CH-03</span>
+          <span class="channel-title">Family</span>
+          <span class="channel-copy">Care of children, protection orders, relationship property.</span>
+        </label>
+
+        <label class="channel">
+          <input type="radio" name="channel" value="police">
+          <span class="channel-id">CH-04</span>
+          <span class="channel-title">Police &amp; courts</span>
+          <span class="channel-copy">Arrest, search, charges, bail, legal aid eligibility.</span>
+        </label>
+
+        <label class="channel">
+          <input type="radio" name="channel" value="consumer">
+          <span class="channel-id">CH-05</span>
+          <span class="channel-title">Consumer &amp; debt</span>
+          <span class="channel-copy">Fair Trading, CCCFA, repossession, disputes.</span>
+        </label>
+
+        <label class="channel">
+          <input type="radio" name="channel" value="welfare">
+          <span class="channel-id">CH-06</span>
+          <span class="channel-title">Benefits &amp; ACC</span>
+          <span class="channel-copy">MSD reviews, sanctions, ACC cover and entitlements.</span>
+        </label>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" id="engage">Engage diagnostic</button>
+        <p id="status-line" role="status">Awaiting channel lock.</p>
+      </div>
+    </form>
+    </section>
+
+    <section id="module-02" class="stage" hidden>
+      <section class="brief">
+        <p class="kicker" id="m2-kicker">Module 02 · Intake diagnostic</p>
+        <h2>Weekly means &amp; extra help</h2>
+        <p class="lede">
+          Estimate Accommodation Supplement, Disability Allowance, and Temporary Additional Support
+          from weekly rent and income. Figures use Work and Income rates from 1 April 2026.
+          They are a diagnostic, not an MSD decision.
+        </p>
+      </section>
+
+      <form id="intake-form" class="smart-form">
+        <div class="form-grid">
+          <label class="field">
+            <span>Partner in household</span>
+            <select name="partner" id="field-partner">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Dependent children</span>
+            <input type="number" name="children" id="field-children" min="0" max="12" step="1" value="0">
+          </label>
+          <label class="field">
+            <span>Accommodation area</span>
+            <select name="area" id="field-area">
+              <option value="1">Area 1 — Auckland / high-cost</option>
+              <option value="2">Area 2 — main metros</option>
+              <option value="3">Area 3 — provincial cities</option>
+              <option value="4">Area 4 — rest of NZ</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>On a main benefit or NZ Super?</span>
+            <select name="onBenefit" id="field-benefit">
+              <option value="no">No — non-beneficiary</option>
+              <option value="yes">Yes</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Public / community housing</span>
+            <select name="publicHousing" id="field-housing">
+              <option value="no">No — private rent or board</option>
+              <option value="yes">Yes — Kāinga Ora or CHP</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Cash assets (NZD)</span>
+            <input type="number" name="assets" id="field-assets" min="0" step="1" value="0">
+          </label>
+          <label class="field">
+            <span>Weekly rent or board (NZD)</span>
+            <input type="number" name="rent" id="field-rent" min="0" step="0.01" required>
+          </label>
+          <label class="field">
+            <span>Weekly income before tax (NZD)</span>
+            <input type="number" name="income" id="field-income" min="0" step="0.01" required>
+          </label>
+          <label class="field">
+            <span>Weekly disability-related costs</span>
+            <input type="number" name="disabilityCosts" id="field-disability" min="0" step="0.01" value="0">
+          </label>
+          <label class="field">
+            <span>Other essential weekly costs</span>
+            <input type="number" name="otherCosts" id="field-other" min="0" step="0.01" value="0">
+          </label>
+          <label class="field field-wide">
+            <span>MSD notice text (optional)</span>
+            <textarea name="msdNotice" id="field-notice" rows="4" placeholder="Paste a review, sanction, overpayment, or decline letter…"></textarea>
+          </label>
+          <label class="field field-wide">
+            <span>Upload MSD notice (optional)</span>
+            <input type="file" name="msdFile" id="field-file" accept=".txt,.pdf,.png,.jpg,.jpeg,.heic,.html">
+            <small id="file-meta">No file in session. Binary is not stored; only name and text extracts persist until pagehide.</small>
+          </label>
+        </div>
+
+        <div class="estimate-grid" id="estimate-grid" aria-live="polite">
+          <article class="estimate">
+            <p class="estimate-id">AS</p>
+            <h3>Accommodation Supplement</h3>
+            <p class="estimate-value" id="out-as">$0.00</p>
+            <p class="estimate-note" id="note-as">Awaiting rent and income.</p>
+          </article>
+          <article class="estimate">
+            <p class="estimate-id">DA</p>
+            <h3>Disability Allowance</h3>
+            <p class="estimate-value" id="out-da">$0.00</p>
+            <p class="estimate-note" id="note-da">Enter disability costs if claimed.</p>
+          </article>
+          <article class="estimate">
+            <p class="estimate-id">TAS</p>
+            <h3>Temporary Additional Support</h3>
+            <p class="estimate-value" id="out-tas">$0.00</p>
+            <p class="estimate-note" id="note-tas">Deficiency vs 30% upper limit.</p>
+          </article>
+        </div>
+        <p class="estimate-total">Combined extra-help estimate: <strong id="out-total">$0.00</strong> / week</p>
+        <p id="notice-flag" class="notice-flag" hidden></p>
+
+        <div class="actions">
+          <button type="button" class="ghost" id="back-m1">Return to channels</button>
+          <button type="submit">Lock estimate into session</button>
+          <p id="intake-status" role="status">Live calc · session still ephemeral.</p>
+        </div>
+      </form>
+    </section>
+    </div>
+  </main>
+
+  <footer class="hud-foot">
+    <p>Not a substitute for a lawyer. Information is general and New Zealand–focused.</p>
+    <p>Session store: <code>sessionStorage</code> · purge on <code>pagehide</code></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
